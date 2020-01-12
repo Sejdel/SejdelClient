@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import Button from '@material-ui/core/Button';
 import NavBar from '../navbar/navbar'
+import StaticPage from '../static_pages/StaticPage'
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
           rel="noopener noreferrer"
         >
           Learn React
-         
+
         </a>
       </header>
       SejdelSöndag
@@ -28,6 +29,8 @@ function App() {
       <Button variant="contained" color="primary">
         f
       </Button>
+
+      <StaticPage />
     </div>
   );
 }
