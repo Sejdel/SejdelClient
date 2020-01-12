@@ -16,6 +16,11 @@
   margin: 1rem 0;
 }
 
+.content ul {
+  list-style: initial;
+  background-color: initial;
+}
+
 .lemma {
   text-transform: lowercase;
 
