@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import './navbar.css';
-import AppBar from '@material/core/AppBar'
-import Toolbar from '@material/core/ToolBar'
-import IconButton from '@material/core/IconButton'
-import MenuIcon from '@material/core/MenuIcon'
-import classes from '@material/core/classes'
-import Typography from '@material/core/Typography'
-import Button from '@material/core/Button'
+import AppBar from '@material-ui/core/AppBar'
+import Toolbar from '@material-ui/core/Toolbar';
+import IconButton from '@material-ui/core/IconButton'
+import MenuIcon from '@material-ui/icons/Menu'
+import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography'
+import Button from '@material-ui/core/Button'
 
 
 
@@ -16,10 +16,10 @@ class NavBar extends Component {
     return (
         <AppBar position="static">
         <Toolbar>
-            <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+            <IconButton edge="start"  color="inherit" aria-label="menu">
             <MenuIcon />
             </IconButton>
-            <Typography variant="h6" className={classes.title}>
+            <Typography variant="h6" >
             News
             </Typography>
             <Button color="inherit">Login</Button>
