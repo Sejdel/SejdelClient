@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+.content {
+  display: block;
+  width: 80%;
+  margin: 20px auto;
+  padding: 10px 20px;
+
+  text-align: left;
+  border-radius: 0.4rem;
+  background-color: #f9f9f9;
+  color: #333355;
+}
+
+.content h1 {
+  margin: 1rem 0;
+}
+
+.lemma {
+  text-transform: lowercase;
+
+  font-family: serif;
+  font-size: 3rem;
+}
+
+.phonetic {
+  font-weight: normal;
+  color: #777799;
+}
+
+.content p {
+  text-align: justify;
+}
+
+.reference {
+  font-style: italic;
+  color: #777799;
+}

@@ -10,10 +10,6 @@ function App() {
 
       <NavBar />
 
-      <Button variant="contained" color="primary">
-        f
-      </Button>
-
       <StaticPage />
     </div>
   );
