@@ -2,6 +2,9 @@ import React from 'react';
 import './StaticPage.css';
 
 function StaticPage() {
+
+  let state = { apiResponse: "a" };
+  
   return (
     <div className="content">
       <h1 class="lemma">&ldquo; Sejdelsöndag &rdquo;</h1>
