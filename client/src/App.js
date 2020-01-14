@@ -11,6 +11,8 @@ import {
 // Pages
 import Home from "./pages/home"
 import About from "./pages/about"
+import SignIn from "./pages/signin"
+import SignUp from "./pages/signup"
 import NotFound from "./pages/404"
 
 class App extends Component {
@@ -20,6 +22,8 @@ class App extends Component {
         <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/about-us" component={About} />
+        <Route exact path="/sign-in" component={SignIn} />
+        <Route exact path="/sign-up" component={SignUp} />
         <Route exact component={NotFound} />
        </Switch>
       </Router>
