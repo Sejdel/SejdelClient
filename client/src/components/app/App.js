@@ -15,11 +15,8 @@ function App() {
 
       <NavBar />
 
-      <Button variant="contained" color="primary">
-        f
-      </Button>
-      <ApiTest />
       <StaticPage />
+      <ApiTest />
     </div>
   );
 }
