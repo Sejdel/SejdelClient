@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component , useState} from "react";
 
 import {
   BrowserRouter as Router,
@@ -14,10 +14,15 @@ import About from "./pages/about"
 import SignIn from "./pages/signin"
 import SignUp from "./pages/signup"
 import NotFound from "./pages/404"
+import NavBar from './components/navbar/navbar'
+
 
 class App extends Component {
+
   render() {
     return (
+      <div>
+      <NavBar />
       <Router>
         <Switch>
         <Route exact path="/" component={Home} />
@@ -27,6 +32,7 @@ class App extends Component {
         <Route exact component={NotFound} />
        </Switch>
       </Router>
+      </div>
     );
   }
 }

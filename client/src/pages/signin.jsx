@@ -8,7 +8,6 @@ import SignInComp from '../components/signin/signin'
 const SignIn = () => {
   return (
     <div>
-        <NavBar />
         <SignInComp />
     </div>
   );

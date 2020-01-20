@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -37,6 +37,37 @@ const useStyles = makeStyles(theme => ({
 export default function SignIn() {
   const classes = useStyles();
 
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  console.log('Is signed in?', )
+
+  function validateForm() {
+    return email.length > 0 && password.length > 0;
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    fetch('http://localhost:9000/auth/signin' , {
+      method: "POST",
+      withCredentials: true,
+      credentials: 'include',
+      headers: {
+      'Content-type': 'application/json'
+      },
+      body: JSON.stringify({email, password})})
+      .then((result) => {
+        if (result.status == 200) {
+          //localStorage.setItem('token', result.token);
+          console.log(result);
+          alert('Logged in succesfully.');
+        } else {
+          alert('Failed to log in.');
+        }
+      });
+  }
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -47,7 +78,7 @@ export default function SignIn() {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} onSubmit={handleSubmit}>
           <TextField
             variant="outlined"
             margin="normal"
@@ -58,6 +89,8 @@ export default function SignIn() {
             name="email"
             autoComplete="email"
             autoFocus
+            value={email}
+            onChange={e => setEmail(e.target.value)}
           />
           <TextField
             variant="outlined"
@@ -69,10 +102,13 @@ export default function SignIn() {
             type="password"
             id="password"
             autoComplete="current-password"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
+            disabled={!validateForm()}
           />
           <Button
             type="submit"

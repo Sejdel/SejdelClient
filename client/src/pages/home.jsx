@@ -8,7 +8,6 @@ import ApiTest from '../components/apitest/apitest'
 const Home = () => {
   return (
     <div>
-      <NavBar />
       <StaticPage />
       <ApiTest />
     </div>

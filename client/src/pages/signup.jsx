@@ -8,7 +8,6 @@ import SignUpComp from '../components/signup/signup'
 const SignUp = () => {
   return (
     <div>
-        <NavBar />
         <SignUpComp />
     </div>
   );
