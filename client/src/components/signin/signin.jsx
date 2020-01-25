@@ -12,7 +12,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-
+import { Redirect } from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -40,8 +40,6 @@ export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  console.log('Is signed in?', )
-
   function validateForm() {
     return email.length > 0 && password.length > 0;
   }
@@ -59,14 +57,15 @@ export default function SignIn() {
       body: JSON.stringify({email, password})})
       .then((result) => {
         if (result.status == 200) {
-          //localStorage.setItem('token', result.token);
-          console.log(result);
-          alert('Logged in succesfully.');
+          window.location.reload();
         } else {
+          console.log(result);
           alert('Failed to log in.');
         }
       });
   }
+
+  
 
   return (
     <Container component="main" maxWidth="xs">

@@ -16,9 +16,9 @@ import SignUp from "./pages/signup"
 import NotFound from "./pages/404"
 import NavBar from './components/navbar/navbar'
 
-
 class App extends Component {
 
+ 
   render() {
     return (
       <div>

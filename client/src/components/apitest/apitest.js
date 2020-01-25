@@ -1,10 +1,5 @@
 import React, { Component } from 'react';
 
-const loadUsers = () =>
-    fetch('http://localhost:9000/testAPI')
-        .then(res => res.json())
-
-
 class ApiTest extends Component {
 
     constructor(props) {
@@ -13,7 +8,7 @@ class ApiTest extends Component {
     }
     
     callAPI() {
-        fetch("http://localhost:9000/auth/signedin", {
+        fetch("http://localhost:9000/testAPI", {
             credentials: 'include',
         })
             .then(res => res.text())

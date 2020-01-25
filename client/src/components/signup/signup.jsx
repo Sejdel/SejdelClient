@@ -12,6 +12,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import { withStyles } from '@material-ui/core/styles';
+import MuiPhoneInput from 'material-ui-phone-number';
 
 const styles = theme => ({
   paper: {
@@ -37,10 +38,10 @@ class Signup extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            firstname: '',
-            lastname: '',
+            firstName: '',
+            lastName: '',
             email: '',
-            phonenr: '',
+            phoneNr: '',
             password: ''
         }
     }
@@ -52,18 +53,13 @@ class Signup extends Component {
 
     onSubmit = (e) => {
     e.preventDefault();
-    // get form data out of state
-    const { first_name, last_name, password, email, phone } = this.state;
 
     fetch('http://localhost:9000/auth/signup' , {
         method: "POST",
         headers: {
         'Content-type': 'application/json'
         },
-        body: JSON.stringify(this.state)})
-        .then((result) => {
-          console.log(result);
-        });
+        body: JSON.stringify(this.state)});
     }
 
     render() {
@@ -128,9 +124,23 @@ class Signup extends Component {
                     />
                   </Grid>
                   <Grid item xs={12}>
+                    <MuiPhoneInput
+                      variant="outlined"
+                      required
+                      fullWidth
+                      name="phoneNr"
+                      label="Telephone Number"
+                      id="phoneNr"
+                      autoComplete="tel"
+                      defaultCountry='se'
+                      regions={['europe']}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
                     <FormControlLabel
+                      required
                       control={<Checkbox value="allowExtraEmails" color="primary" />}
-                      label="I want to receive inspiration, marketing promotions and updates via email."
+                      label="I will follow the rules."
                     />
                   </Grid>
                 </Grid>
