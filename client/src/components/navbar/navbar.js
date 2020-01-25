@@ -174,8 +174,6 @@ export default function ButtonAppBar() {
             <Typography variant="h6" className={classes.title}>
               SejdelSöndag
             </Typography>
-            <Button color="inherit" href="/">Home</Button> 
-            <Button color="inherit" href="/about-us">About Us</Button> 
             <Button color="inherit" href="/sign-in">Sign In</Button> 
           </Toolbar>
         </AppBar>

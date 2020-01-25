@@ -1,4 +1,4 @@
-import React, { Component} from 'react';
+import React, { Component, useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -11,10 +11,10 @@ import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import MuiPhoneInput from 'material-ui-phone-number';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   paper: {
     marginTop: theme.spacing(8),
     display: 'flex',
@@ -32,26 +32,18 @@ const styles = theme => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
-});
+}));
 
-class Signup extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            firstName: '',
-            lastName: '',
-            email: '',
-            phoneNr: '',
-            password: ''
-        }
-    }
+export default function SignUp()  {
 
-    onChange = (e) => {
-        console.log("e")
-        this.setState({ [e.target.name]: e.target.value });
-      }
+    const classes = useStyles();
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [email, setEmail] = useState("");
+    const [phoneNr, setPhoneNr] = useState("");
+    const [password, setPassword] = useState("");
 
-    onSubmit = (e) => {
+    function onSubmit(e) {
     e.preventDefault();
 
     fetch('http://localhost:9000/auth/signup' , {
@@ -59,23 +51,20 @@ class Signup extends Component {
         headers: {
         'Content-type': 'application/json'
         },
-        body: JSON.stringify(this.state)});
+        body: JSON.stringify({firstName, lastName, email, phoneNr, password})});
     }
 
-    render() {
-        const classes = this.props;
-        const { first_name, last_name, password, email, phone} = this.state;
-        return (
+    return (
             <Container component="main" maxWidth="xs">
             <CssBaseline />
-            <div className="{classes.paper}">
+            <div className={classes.paper}>
               <Avatar className={classes.avatar}>
                 <LockOutlinedIcon />
               </Avatar>
               <Typography component="h1" variant="h5">
                 Sign up
               </Typography>
-              <form className={classes.form} noValidate onSubmit={this.onSubmit} onChange={this.onChange}>
+              <form className={classes.form} noValidate onSubmit={onSubmit}>
                 <Grid container spacing={2}>
                   <Grid item xs={12} sm={6}>
                     <TextField
@@ -87,6 +76,8 @@ class Signup extends Component {
                       id="firstName"
                       label="First Name"
                       autoFocus
+                      value={firstName}
+                      onChange={e => setFirstName(e.target.value)}
                     />
                   </Grid>
                   <Grid item xs={12} sm={6}>
@@ -98,6 +89,8 @@ class Signup extends Component {
                       label="Last Name"
                       name="lastName"
                       autoComplete="lname"
+                      value={lastName}
+                      onChange={e => setLastName(e.target.value)}
                     />
                   </Grid>
                   <Grid item xs={12}>
@@ -109,6 +102,8 @@ class Signup extends Component {
                       label="Email Address"
                       name="email"
                       autoComplete="email"
+                      value={email}
+                      onChange={e => setEmail(e.target.value)}
                     />
                   </Grid>
                   <Grid item xs={12}>
@@ -121,6 +116,8 @@ class Signup extends Component {
                       type="password"
                       id="password"
                       autoComplete="current-password"
+                      value={password}
+                      onChange={e => setPassword(e.target.value)}
                     />
                   </Grid>
                   <Grid item xs={12}>
@@ -134,6 +131,8 @@ class Signup extends Component {
                       autoComplete="tel"
                       defaultCountry='se'
                       regions={['europe']}
+                      value={phoneNr}
+                      onChange={setPhoneNr}
                     />
                   </Grid>
                   <Grid item xs={12}>
@@ -163,8 +162,5 @@ class Signup extends Component {
               </form>
             </div>
           </Container>
-        );
-      };
+      );
     }
-
-export default withStyles(styles)(Signup);
