@@ -13,6 +13,8 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
 import MuiPhoneInput from 'material-ui-phone-number';
+import { Redirect } from 'react-router-dom'
+
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -42,6 +44,7 @@ export default function SignUp()  {
     const [email, setEmail] = useState("");
     const [phoneNr, setPhoneNr] = useState("");
     const [password, setPassword] = useState("");
+    const [success, setSuccess] = useState("");
 
     function onSubmit(e) {
     e.preventDefault();
@@ -51,7 +54,29 @@ export default function SignUp()  {
         headers: {
         'Content-type': 'application/json'
         },
-        body: JSON.stringify({firstName, lastName, email, phoneNr, password})});
+        body: JSON.stringify({firstName, lastName, email, phoneNr, password})})
+        .then( result => {
+          console.log(result);
+          setSuccess(true);
+        });
+    }
+
+    if(success === true) {
+      return <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <div className={classes.paper}>
+        <Avatar className={classes.avatar}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          Success!
+        </Typography>
+
+              <Link href="/sign-in" variant="body2">
+                Sign in here
+              </Link>
+      </div>
+    </Container>
     }
 
     return (

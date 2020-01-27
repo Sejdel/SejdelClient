@@ -13,6 +13,10 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Redirect } from 'react-router-dom'
+import Cookies from 'universal-cookie';
+import Alert from '@material-ui/lab/Alert';
+import Snackbar from '@material-ui/core/Snackbar';
+
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -39,10 +43,18 @@ export default function SignIn() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [open, setOpen] = useState("");
 
   function validateForm() {
     return email.length > 0 && password.length > 0;
   }
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+  };
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -59,17 +71,26 @@ export default function SignIn() {
         if (result.status == 200) {
           window.location.reload();
         } else {
-          console.log(result);
-          alert('Failed to log in.');
+          setPassword('');
+          setOpen(true);
         }
       });
   }
 
-  
 
+  const cookies = new Cookies();
+  if(cookies.get('userid')) {
+    return <Redirect to='/'  />;
+  }
+  
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="error">
+          Unable to sign in.
+        </Alert>
+      </Snackbar>
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
@@ -77,7 +98,7 @@ export default function SignIn() {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form} onSubmit={handleSubmit}>
+        <form className={classes.form} onSubmit={handleSubmit} id="form">
           <TextField
             variant="outlined"
             margin="normal"
