@@ -98,7 +98,7 @@ export default function ButtonAppBar() {
           </ListItem>
         </Link>
 
-        <Link href="/"> 
+        <Link href="/highscore"> 
           <ListItem button key='highscore'>
             <ListItemIcon> <HomeIcon /> </ListItemIcon>
             <ListItemText> Highscore </ListItemText>

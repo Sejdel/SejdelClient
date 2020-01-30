@@ -1,12 +1,14 @@
 import React from 'react';
 import './StaticPage.css';
+import Sejdel from "../../images/sejdel.jpg"
+
 
 function StaticPage() {
 
   let state = { apiResponse: "a" };
 
   return (
-    <div className="content">
+    <div className="content" styles={{ backgroundImage:`url(${Sejdel})` }}>
       <h1 class="lemma">&ldquo; Sejdelsöndag &rdquo;</h1>
       <h3 class="phonetic">|sej`delsön´dag|</h3>
 

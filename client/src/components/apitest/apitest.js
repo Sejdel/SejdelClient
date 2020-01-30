@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Sejdel from "../../images/sejdel.jpg"
 
 class ApiTest extends Component {
 
@@ -23,7 +24,7 @@ class ApiTest extends Component {
         return (
         
         <div>
-            <p>Response</p>
+            <h1> Response1</h1>
             <p className="App-intro">{this.state.apiResponse}</p>
         </div>
         );
