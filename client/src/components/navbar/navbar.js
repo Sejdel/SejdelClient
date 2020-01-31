@@ -116,6 +116,12 @@ export default function ButtonAppBar() {
       <Divider />
 
       <List>
+      <Link href="/pour"> 
+            <ListItem button key='pour'>
+              <ListItemIcon> <HomeIcon /> </ListItemIcon>
+              <ListItemText> Pour a beer! </ListItemText>
+            </ListItem>
+          </Link> 
         <Link href="/"> 
             <ListItem button key='admin'>
               <ListItemIcon> <HomeIcon /> </ListItemIcon>

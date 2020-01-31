@@ -27,10 +27,8 @@ class HighscoreTable extends Component {
     }
     
     componentWillMount() {
-        console.log('2')
         this.setState({isLoading: true});
         this.callAPI();
-        console.log('hello', this.state)
     }
 
     render() {
@@ -43,21 +41,19 @@ class HighscoreTable extends Component {
         return (
         
         <div>
+            <h1>Highscore</h1>
         <TableContainer component={Paper}>
             <Table aria-label="simple table">
                 <TableHead>
                 <TableRow>
-                    <TableCell align="right">First Name</TableCell>
-                    <TableCell align="right">Last Name</TableCell>
+                    <TableCell align="right">Name</TableCell>
                     <TableCell align="right">Total beer (ml)</TableCell>
                 </TableRow>
                 </TableHead>
                 <TableBody>
                 {this.state.apiResponse.map(row => (
-                    <TableRow key={row.first_name}>
-
-                    <TableCell align="right">{row.first_name}</TableCell>
-                    <TableCell align="right">{row.last_name}</TableCell>
+                    <TableRow key={row.name}>
+                    <TableCell align="right">{row.name}</TableCell>
                     <TableCell align="right">{row.total_volume}</TableCell>
                     </TableRow>
                 ))}
