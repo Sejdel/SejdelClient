@@ -1,4 +1,7 @@
 import React, { Component , useState} from "react";
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import grey from '@material-ui/core/colors/grey';
+import amber from '@material-ui/core/colors/amber';
 
 import {
   BrowserRouter as Router,
@@ -17,13 +20,35 @@ import Highscore from "./pages/highscore";
 import Pour from "./pages/pour";
 import NotFound from "./pages/404";
 import NavBar from './components/navbar/navbar';
+import { dark } from "@material-ui/core/styles/createPalette";
+
 
 class App extends Component {
 
  
   render() {
+    const theme = createMuiTheme({
+      palette: {
+        type: 'dark',
+        primary: {
+          main: '#ffa726',
+        },
+        secondary: {
+          main: '#e65100',
+        },
+      },
+      status: {
+        danger: 'orange',
+      },
+      typography: {
+        fontFamily: [
+          'Roboto'
+        ]
+      }
+    });
     return (
       <div>
+      <ThemeProvider theme={theme}>
       <NavBar />
       <Router>
         <Switch>
@@ -36,6 +61,7 @@ class App extends Component {
         <Route exact component={NotFound} />
        </Switch>
       </Router>
+      </ThemeProvider>
       </div>
     );
   }

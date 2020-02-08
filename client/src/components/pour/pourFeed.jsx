@@ -66,10 +66,7 @@ export default function SignIn() {
             <div>Loading...</div>
         )
     }
-
-
-    console.log(apiResponse[0].id)
-
+    
     return (
     <Container component="main" maxWidth="false">
         <CssBaseline />
