@@ -9,7 +9,6 @@ import StaticPage from '../components/static_pages/StaticPage'
 
 // Components
 import NavBar from '../components/navbar/navbar'
-import ApiTest from '../components/apitest/apitest'
 
 
 const useStyles = makeStyles(theme => ({
