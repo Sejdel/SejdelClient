@@ -1,21 +1,14 @@
 import React, { useState , useEffect} from 'react';
 import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { Redirect } from 'react-router-dom'
-import Cookies from 'universal-cookie';
-import Alert from '@material-ui/lab/Alert';
-import Snackbar from '@material-ui/core/Snackbar';
 
-import ToggleButton from '@material-ui/lab/ToggleButton';
-import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 
 import SelectUser from './selectUser'
 import MoodIcon from '@material-ui/icons/Mood';
-
+import PourCard from './pourcard'
 
 
 
@@ -25,6 +18,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    width: '100%'
   },
   avatar: {
     margin: theme.spacing(1),
@@ -77,12 +71,12 @@ export default function SignIn() {
     console.log(apiResponse[0].id)
 
     return (
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth="false">
         <CssBaseline />
         <div className={classes.paper}>
 
                 {apiResponse.map(row => (
-                    row.id
+                    <PourCard name={row.id} volume={row.volume}/>
                 ))}
         </div>
     </Container>
