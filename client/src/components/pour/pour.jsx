@@ -16,9 +16,7 @@ import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import SelectUser from './selectUser';
 import PourFeed from './pourFeed';
 import MoodIcon from '@material-ui/icons/Mood';
-
-
-
+import { Divider } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -29,7 +27,7 @@ const useStyles = makeStyles(theme => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: theme.palette.primary.main,
   },
   form: {
     width: '100%', // Fix IE 11 issue.
@@ -55,6 +53,7 @@ export default function SignIn() {
   const [size, setSize] = useState('m');
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [shouldReload, setShouldReload] = useState(false);
 
 
     const handleClose = (event, reason) => {
@@ -102,6 +101,8 @@ export default function SignIn() {
           setError(false);
           setSuccess(true);
           setUser(null);
+          setShouldReload(true);
+          setShouldReload(false);
         } else {
           setSuccess(false);
           setError(true);
@@ -125,7 +126,7 @@ export default function SignIn() {
   }
   
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth="sm">
       <CssBaseline />
 
       <Snackbar open={error} autoHideDuration={6000} onClose={handleClose}>
@@ -180,7 +181,8 @@ export default function SignIn() {
 
         </form>
       </div>
-      <PourFeed />
+      <Divider />
+      <PourFeed key={shouldReload} />
       
     </Container>
   );

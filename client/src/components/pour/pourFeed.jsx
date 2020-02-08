@@ -4,17 +4,21 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-
-
-import SelectUser from './selectUser'
-import MoodIcon from '@material-ui/icons/Mood';
+import LinearProgress from '@material-ui/core/LinearProgress';
 import PourCard from './pourcard'
 
 
 
+
 const useStyles = makeStyles(theme => ({
+  root: {
+    width: '100%',
+    '& > * + *': {
+      marginTop: theme.spacing(1),
+    },
+  },
   paper: {
-    marginTop: theme.spacing(8),
+    marginTop: theme.spacing(2),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -48,7 +52,7 @@ export default function SignIn() {
   const [loading, setLoading] = useState(true);
 
   async function fetchPours() {
-    const response = await fetch('http://localhost:9000/pours' , {
+    const response = await fetch('http://localhost:9000/views/pourfeed' , {
         method: "GET",
         withCredentials: true,
         credentials: 'include'});
@@ -63,20 +67,26 @@ export default function SignIn() {
 
     if(loading){
         return (
-            <div>Loading...</div>
+            <div className={classes.root}>
+              <LinearProgress color="secondary" />
+            </div>
         )
     }
     
     return (
-    <Container component="main" maxWidth="false">
-        <CssBaseline />
         <div className={classes.paper}>
-
+          <Typography variant="h5" >Pour Feed</Typography>
                 {apiResponse.map(row => (
-                    <PourCard name={row.id} volume={row.volume}/>
+                    <PourCard 
+                    name={row.first_name + ' ' + row.last_name} 
+                    beer={row.beer}
+                    volume={row.volume}
+                    date={row.created_on}
+                    cost={row.cost}
+                    desc={row.description}
+                    />
                 ))}
         </div>
-    </Container>
     );
 }
 

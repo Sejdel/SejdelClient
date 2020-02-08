@@ -37,7 +37,7 @@ class SelectUser extends Component {
 
         if (this.state.apiResponse === null){
             return (
-                <div>loading...</div>
+                <TextField label="LOADING" variant="outlined" fullWidth />
             )
         }
         return (

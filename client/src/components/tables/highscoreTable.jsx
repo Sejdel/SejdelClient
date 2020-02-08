@@ -7,6 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import Container from '@material-ui/core/Container';
 import './highscoreTable.css';
 
 class HighscoreTable extends Component {
@@ -42,22 +43,22 @@ class HighscoreTable extends Component {
         console.log(this.state.apiResponse)
         return (
         
-        <div>
+        <Container component="main" maxWidth="sm">
             <Typography color='primary' align='center'>
                 <h1>Highscore</h1>
             </Typography>
-        <TableContainer component={Paper}>
-            <Table aria-label="simple table">
+        <TableContainer component={Paper} fullWidth>
+            <Table aria-label="simple table" >
                 <TableHead>
                 <TableRow>
-                    <TableCell align="right" > <h2>Name</h2></TableCell>
+                    <TableCell align="center" > <h2>Name</h2></TableCell>
                     <TableCell align="right"><h2>Total beer (ml)</h2></TableCell>
                 </TableRow>
                 </TableHead>
                 <TableBody>
                 {this.state.apiResponse.map(row => (
                     <TableRow key={row.name}>
-                    <TableCell align="right">{row.name}</TableCell>
+                    <TableCell align="center">{row.name}</TableCell>
                     <TableCell align="right">{row.total_volume}</TableCell>
                     </TableRow>
                 ))}
@@ -65,7 +66,7 @@ class HighscoreTable extends Component {
             </Table>
         </TableContainer>
 
-        </div>
+        </Container>
         );
     }
 }
