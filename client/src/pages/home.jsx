@@ -5,7 +5,6 @@ import { makeStyles } from '@material-ui/core/styles';
 
 // Components
 import StaticPage from '../components/static_pages/StaticPage'
-import ApiTest from '../components/apitest/apitest'
 import Button from '@material-ui/core/Button';
 import Cookies from 'universal-cookie';
 

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Typography from '@material-ui/core/Typography';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -6,6 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import './highscoreTable.css';
 
 class HighscoreTable extends Component {
 
@@ -41,13 +43,15 @@ class HighscoreTable extends Component {
         return (
         
         <div>
-            <h1>Highscore</h1>
+            <Typography color='primary' align='center'>
+                <h1>Highscore</h1>
+            </Typography>
         <TableContainer component={Paper}>
             <Table aria-label="simple table">
                 <TableHead>
                 <TableRow>
-                    <TableCell align="right">Name</TableCell>
-                    <TableCell align="right">Total beer (ml)</TableCell>
+                    <TableCell align="right" > <h2>Name</h2></TableCell>
+                    <TableCell align="right"><h2>Total beer (ml)</h2></TableCell>
                 </TableRow>
                 </TableHead>
                 <TableBody>
@@ -60,6 +64,7 @@ class HighscoreTable extends Component {
                 </TableBody>
             </Table>
         </TableContainer>
+
         </div>
         );
     }
