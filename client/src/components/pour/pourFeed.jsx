@@ -78,7 +78,8 @@ export default function SignIn() {
           <Typography variant="h5" >Pour Feed</Typography>
                 {apiResponse.map(row => (
                     <PourCard 
-                    name={row.first_name + ' ' + row.last_name} 
+                    name={row.name } 
+                    created_by={row.created_by_name}
                     beer={row.beer}
                     volume={row.volume}
                     date={row.created_on}

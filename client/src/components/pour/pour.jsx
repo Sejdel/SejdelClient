@@ -66,7 +66,6 @@ export default function SignIn() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log(size, user);
 
     if(user === null) {
       setError(true);
@@ -97,6 +96,7 @@ export default function SignIn() {
       },
       body: JSON.stringify({volume: vol, cost, user_id: user.id})})
       .then((result) => {
+        console.log(result.status)
         if (result.status == 201) {
           setError(false);
           setSuccess(true);

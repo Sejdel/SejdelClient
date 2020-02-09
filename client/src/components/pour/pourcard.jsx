@@ -110,7 +110,7 @@ export default function PourCard(props) {
 
         <CardContent >
             <Typography alignt="left" className={classes.left}> 
-              {props.desc}
+              Created by {props.created_by}
             </Typography>
             <Typography align="right" className={classes.collapse} color="primary"> {props.cost} SEK</Typography>
         </CardContent>
