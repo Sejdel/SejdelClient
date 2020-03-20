@@ -38,7 +38,6 @@ const useStyles = makeStyles(theme => ({
 
 export default function ButtonAppBar() {
   const classes = useStyles();
-
   const [state, setState] = React.useState({
     left: false,
     right: false,
@@ -52,83 +51,93 @@ export default function ButtonAppBar() {
     setState({ ...state, [side]: open });
   };
 
-  const sideList = side => (
+  const basic = 
+  <List>        
+    <Link href="/"> 
+      <ListItem button key='home'>
+        <ListItemIcon> <HomeIcon /> </ListItemIcon>
+        <ListItemText> Home </ListItemText>
+      </ListItem>
+    </Link>
+            
+    <Link href="/about-us"> 
+      <ListItem button key='about-us'>
+        <ListItemIcon> <HomeIcon /> </ListItemIcon>
+        <ListItemText> About Us </ListItemText>
+      </ListItem>
+    </Link>
+            
+    <Link href="/"> 
+      <ListItem button key='rules'>
+        <ListItemIcon> <HomeIcon /> </ListItemIcon>
+        <ListItemText> Rules </ListItemText>
+      </ListItem>
+    </Link>
+  </List>
+
+  const patron =      
+  <List>
+    <Divider />
+    <Link href="/"> 
+      <ListItem button key='my-beers'>
+        <ListItemIcon> <HomeIcon /> </ListItemIcon>
+        <ListItemText> My Beers </ListItemText>
+      </ListItem>
+    </Link>
+
+    <Link href="/"> 
+      <ListItem button key='beer-feed'>
+        <ListItemIcon> <HomeIcon /> </ListItemIcon>
+        <ListItemText> Beer Feed </ListItemText>
+      </ListItem>
+    </Link>
+
+    <Link href="/highscore"> 
+      <ListItem button key='highscore'>
+        <ListItemIcon> <HomeIcon /> </ListItemIcon>
+        <ListItemText> Highscore </ListItemText>
+      </ListItem>
+    </Link>
+
+    <Link href="/"> 
+      <ListItem button key='memes'>
+        <ListItemIcon> <HomeIcon /> </ListItemIcon>
+        <ListItemText> Memes </ListItemText>
+      </ListItem>
+    </Link>
+  </List>
+
+  const admin =
+  <List>
+  <Divider />
+  <Link href="/pour"> 
+        <ListItem button key='pour'>
+          <ListItemIcon> <HomeIcon /> </ListItemIcon>
+          <ListItemText> Pour a beer! </ListItemText>
+        </ListItem>
+      </Link> 
+    <Link href="/"> 
+        <ListItem button key='admin'>
+          <ListItemIcon> <HomeIcon /> </ListItemIcon>
+          <ListItemText> Admin</ListItemText>
+        </ListItem>
+      </Link>
+  </List>
+
+  const sideList = (side, role) => (
     <div
       className={classes.list}
       role="presentation"
       onClick={toggleDrawer(side, false)}
       onKeyDown={toggleDrawer(side, false)}
     >
-      <List>        
-        <Link href="/"> 
-          <ListItem button key='home'>
-            <ListItemIcon> <HomeIcon /> </ListItemIcon>
-            <ListItemText> Home </ListItemText>
-          </ListItem>
-        </Link>
-                
-        <Link href="/about-us"> 
-          <ListItem button key='about-us'>
-            <ListItemIcon> <HomeIcon /> </ListItemIcon>
-            <ListItemText> About Us </ListItemText>
-          </ListItem>
-        </Link>
-                
-        <Link href="/"> 
-          <ListItem button key='rules'>
-            <ListItemIcon> <HomeIcon /> </ListItemIcon>
-            <ListItemText> Rules </ListItemText>
-          </ListItem>
-        </Link>
-
-      </List>
-      <Divider />
-      <List>
-        <Link href="/"> 
-          <ListItem button key='my-beers'>
-            <ListItemIcon> <HomeIcon /> </ListItemIcon>
-            <ListItemText> My Beers </ListItemText>
-          </ListItem>
-        </Link>
-
-        <Link href="/"> 
-          <ListItem button key='beer-feed'>
-            <ListItemIcon> <HomeIcon /> </ListItemIcon>
-            <ListItemText> Beer Feed </ListItemText>
-          </ListItem>
-        </Link>
-
-        <Link href="/highscore"> 
-          <ListItem button key='highscore'>
-            <ListItemIcon> <HomeIcon /> </ListItemIcon>
-            <ListItemText> Highscore </ListItemText>
-          </ListItem>
-        </Link>
-
-        <Link href="/"> 
-          <ListItem button key='memes'>
-            <ListItemIcon> <HomeIcon /> </ListItemIcon>
-            <ListItemText> Memes </ListItemText>
-          </ListItem>
-        </Link>
-      </List>
-
-      <Divider />
-
-      <List>
-      <Link href="/pour"> 
-            <ListItem button key='pour'>
-              <ListItemIcon> <HomeIcon /> </ListItemIcon>
-              <ListItemText> Pour a beer! </ListItemText>
-            </ListItem>
-          </Link> 
-        <Link href="/"> 
-            <ListItem button key='admin'>
-              <ListItemIcon> <HomeIcon /> </ListItemIcon>
-              <ListItemText> Admin </ListItemText>
-            </ListItem>
-          </Link>
-      </List>
+      {basic}
+      {role > 0 &&
+        patron
+      }
+      {role > 2 &&
+        admin
+      }
     </div>
   );
   
@@ -139,7 +148,6 @@ export default function ButtonAppBar() {
       credentials: 'include'
       })
       .then(result => {
-        console.log('Hejdu', result);
         if (result.status == 200) {
           window.location.reload();
         } else {
@@ -147,8 +155,8 @@ export default function ButtonAppBar() {
         }
       })
   }
-
   const cookies = new Cookies();
+  const role = cookies.get('role');
   if(cookies.get('userid')){
     return (
       <div className={classes.root}>
@@ -165,7 +173,7 @@ export default function ButtonAppBar() {
           </Toolbar>
         </AppBar>
         <Drawer open={state.left} onClose={toggleDrawer('left', false)}>
-          {sideList('left')}
+          {sideList('left', role)}
         </Drawer>
       </div>
     );
@@ -184,7 +192,7 @@ export default function ButtonAppBar() {
           </Toolbar>
         </AppBar>
         <Drawer open={state.left} onClose={toggleDrawer('left', false)}>
-          {sideList('left')}
+          {sideList('left', 0)}
       </Drawer>
       </div>
     );
