@@ -82,7 +82,7 @@ export default function SignIn() {
   if(cookies.get('userid')) {
     return <Redirect to='/'  />;
   }
-  
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -107,6 +107,7 @@ export default function SignIn() {
             id="email"
             label="Email Address"
             name="email"
+            type="email"
             autoComplete="email"
             autoFocus
             value={email}
@@ -156,4 +157,3 @@ export default function SignIn() {
     </Container>
   );
 }
-
