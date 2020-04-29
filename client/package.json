@@ -10,6 +10,7 @@
     "@testing-library/react": "^9.4.0",
     "@testing-library/user-event": "^7.2.1",
     "create-react-app": "^3.3.0",
+    "env-cmd": "^10.1.0",
     "material-ui-phone-number": "^2.2.5",
     "moment": "^2.24.0",
     "react": "^16.12.0",
@@ -23,7 +24,11 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "build:development": "env-cmd -f .env.development npm run build",
+    "build:production": "env-cmd -f .env.production npm run build",
+    "start:development": "env-cmd -f .env.development npm start",
+    "start:production": "env-cmd -f .env.production npm start"
   },
   "eslintConfig": {
     "extends": "react-app"
